@@ -22,7 +22,7 @@ Databases_countries = { 'индия':'India','бразилия': 'Brazil','ро�
 'либерия':'Liberia','нигер': 'Niger','вьетнам': 'Vietnam','сан-томе и принсипи': 'Sao Tome and Principe','сан-марино': 'San Marino','папуа новая гвинея': 'Papua New Guinea',
 'бурунди':'Burundi','тайвань': 'Taiwan*', 'коморы': 'Comoros','танзания': 'Tanzania','эритрея': 'Eritrea','маврикий': 'Mauritius','бутан': 'Bhutan','монголия': 'Mongolia','камбоджия': 'Cambodia','лихтенштейн': 'Liechtenstein',
 'монако':'Monaco','барбадос': 'Barbados','Сейшеллы': 'Seychelles','Брунея': 'Brunei','антигуа и барбуда': 'Antigua and Barbuda','сент-винсент и гренадины': 'Saint Vincent and the Grenadines','сент-люсия': 'Saint Lucia','доминика':
-'Dominica','фиджи': 'Fiji','восточный тимор': 'Timor-Leste','гренада': 'Grenada','ватикан': 'Holy See','лаос': 'Laos','сент-китс и невис': 'Saint Kitts and Nevis','западная сахара': 'Western Sahara','соломоновы острова': 'Solomon Islands','сша': 'US','швеция':'Sweden'}
+'Dominica','фиджи': 'Fiji','восточный тимор': 'Timor-Leste','гренада': 'Grenada','ватикан': 'Holy See','лаос': 'Laos','сент-китс и невис': 'Saint Kitts and Nevis','западная сахара': 'Western Sahara','соломоновы острова': 'Solomon Islands','сша': 'US'}
 def translate_country_name(rus_country_name):
     en_country_name = "error"
     for country_name in Databases_countries:
