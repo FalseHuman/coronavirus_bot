@@ -3,6 +3,8 @@ from telebot import types
 from covid import Covid
 import virus
 import datetime
+import traceback
+import time
 covid = Covid()
 bot = telebot.TeleBot('Ваш api-ключ')
 
@@ -11,14 +13,14 @@ bot = telebot.TeleBot('Ваш api-ключ')
 @bot.message_handler(commands=['start'])
 def start(message):
 	markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
-	btn1 = types.KeyboardButton('Во всём мире')
+	btn1 = types.KeyboardButton('🌍')
 	btn2 = types.KeyboardButton('Украина')
 	btn3 = types.KeyboardButton('Россия')
 	btn4 = types.KeyboardButton('Беларусь')
 	markup.add(btn1, btn2, btn3, btn4)
 
-	send_message = f"<b>Привет {message.from_user.first_name}!</b>\nЧтобы узнать данные по коронавирусу напишите " \
-		f"название страны, например: США, Украина, Россия и так далее\n"
+	send_message = f"<b>Привет {message.from_user.first_name}!</b>\nЧтобы узнать статистику коронавирусной инфекции напишите " \
+		f"название страны, например: США, Украина, Россия.\n"
 	bot.send_message(message.chat.id, send_message, parse_mode='html', reply_markup=markup)
 
 # Функция, что сработает при отправке какого-либо текста боту
@@ -27,7 +29,7 @@ def start(message):
 def mess(message):
 	final_message = ""
 	get_message_bot = message.text.strip().lower()
-	if get_message_bot == "во всём мире":
+	if get_message_bot == "во всём мире" or get_message_bot == "🌍":
 		location = covid.get_status_by_country_name("US")
 		time = str(location['last_update'])
 		active = covid.get_total_active_cases()
@@ -45,5 +47,9 @@ def mess(message):
 			final_message = "Такой страны нет в базе/Введено неправильное название страны/Некорректный запрос"
 	bot.send_message(message.chat.id, final_message, parse_mode='html')
 
-# Это нужно чтобы бот работал всё время
-bot.polling(none_stop=True)
+while True:
+    try:
+        bot.polling(none_stop=True)#Это нужно чтобы бот работал всё время
+
+    except:
+        time.sleep(5)#если ошибка бот уходит в спящий режим на 5 секунд
